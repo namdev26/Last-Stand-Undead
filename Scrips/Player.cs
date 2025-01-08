@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     public float moveSpeed = 5f;
     private Rigidbody2D rb;
     public Animator animator;
+
+    public SpriteRenderer characterSR;
     public Vector3 moveInput;
     private void Start(){
         animator = GetComponent<Animator>();
@@ -20,10 +22,10 @@ public class Player : MonoBehaviour
         animator.SetFloat("Speed", moveInput.sqrMagnitude);
         if (moveInput.x != 0){
             if (moveInput.x > 0){
-                transform.localScale = new Vector3(2f, 2f, 2f);
+                characterSR.transform.localScale = new Vector3(2f, 2f, 2f);
             }
             else {
-                transform.localScale = new Vector3(-2f, 2f, 2f);
+                characterSR.transform.localScale = new Vector3(-2f, 2f, 2f);
             }
         }
     }

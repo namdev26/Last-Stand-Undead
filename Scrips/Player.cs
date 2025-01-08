@@ -10,16 +10,14 @@ public class Player : MonoBehaviour
     public Vector3 moveInput;
     private void Start(){
         animator = GetComponent<Animator>();
+        
     }
     private void Update()
     {
         moveInput.x = Input.GetAxis("Horizontal");
-        
         moveInput.y = Input.GetAxis("Vertical");
         transform.position += moveInput * moveSpeed * Time.deltaTime;
-
         animator.SetFloat("Speed", moveInput.sqrMagnitude);
-
         if (moveInput.x != 0){
             if (moveInput.x > 0){
                 transform.localScale = new Vector3(2f, 2f, 2f);

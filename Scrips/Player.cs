@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     public Animator animator;
 
-    public SpriteRenderer characterSR;
+    public SpriteRenderer characterSR ;
     public Vector3 moveInput;
     private void Start(){
         animator = GetComponent<Animator>();

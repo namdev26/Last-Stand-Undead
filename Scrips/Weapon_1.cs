@@ -56,7 +56,7 @@ public class Weapon_1 : MonoBehaviour
             {
                 rb.AddForce(fire.right * bulletForce, ForceMode2D.Impulse);
             }
-            
+
             if (muzzle != null)
                 Instantiate(muzzle, fire.position, fire.rotation, transform);
 

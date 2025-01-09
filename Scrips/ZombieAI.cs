@@ -69,8 +69,6 @@ public class ZombieAI : MonoBehaviour
         {
             currentWP++;
         }
-
-        // Xác định hướng xoay mặt dựa trên direction thay vì force
         if (Mathf.Abs(direction.x) > 0.01f)
         {
             zombieSR.transform.localScale = new Vector3(Mathf.Sign(direction.x) * 2, 2, 1);

@@ -8,11 +8,12 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     public Animator animator;
 
-    public SpriteRenderer characterSR ;
+    public SpriteRenderer characterSR;
     public Vector3 moveInput;
-    private void Start(){
+    private void Start()
+    {
         animator = GetComponent<Animator>();
-        
+
     }
     private void Update()
     {
@@ -20,11 +21,14 @@ public class Player : MonoBehaviour
         moveInput.y = Input.GetAxis("Vertical");
         transform.position += moveInput * moveSpeed * Time.deltaTime;
         animator.SetFloat("Speed", moveInput.sqrMagnitude);
-        if (moveInput.x != 0){
-            if (moveInput.x > 0){
+        if (moveInput.x != 0)
+        {
+            if (moveInput.x > 0)
+            {
                 characterSR.transform.localScale = new Vector3(2f, 2f, 2f);
             }
-            else {
+            else
+            {
                 characterSR.transform.localScale = new Vector3(-2f, 2f, 2f);
             }
         }

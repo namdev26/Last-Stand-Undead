@@ -11314,7 +11314,6 @@ GameObject:
   - component: {fileID: 519139082}
   - component: {fileID: 519139081}
   - component: {fileID: 519139080}
-  - component: {fileID: 519139083}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Untagged
@@ -11410,23 +11409,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 958721399}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &519139083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519139079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcabe75371fd9bf4c854609ab5d56582, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  seeker: {fileID: 0}
-  moveSpeed: 0
-  nextWaypointDistance: 0
-  zombieSR: {fileID: 0}
-  target: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -17477,7 +17459,6 @@ GameObject:
   - component: {fileID: 958721402}
   - component: {fileID: 958721401}
   - component: {fileID: 958721400}
-  - component: {fileID: 958721403}
   - component: {fileID: 958721404}
   m_Layer: 0
   m_Name: Enemy
@@ -17531,7 +17512,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -17607,20 +17588,6 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!114 &958721403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 958721397}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9679e68a0f1144e79c664d9a11ca121, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  target: {fileID: 1272010925}
 --- !u!114 &958721404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17634,8 +17601,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seeker: {fileID: 958721402}
-  moveSpeed: 5
-  nextWaypointDistance: 0.3
+  moveSpeed: 0.1
+  nextWaypointDistance: 1
   zombieSR: {fileID: 519139080}
   target: {fileID: 0}
 --- !u!1 &1272010920
@@ -17670,7 +17637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83e67ae403131b1409c7261bfc734f2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 10
   animator: {fileID: 0}
   characterSR: {fileID: 0}
   moveInput: {x: 0, y: 0, z: 0}
@@ -17873,12 +17840,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 957a9f1d3261974448c8355be6767102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 0}
-  firePos: []
-  muzzle: {fileID: 0}
+  bullet: {fileID: 8373586002616051454, guid: d5d9134ebff7b664ba16d76315cdb8f4, type: 3}
+  firePos:
+  - {fileID: 1506603410}
+  muzzle: {fileID: 7298646757072998143, guid: 070a10f4988f3bd4abe48bf1e3f7513b, type: 3}
   fireEffect: {fileID: 0}
   TimeBtwFire: 0.2
-  bulletForce: 0
+  bulletForce: 50
 --- !u!1 &1358072180
 GameObject:
   m_ObjectHideFlags: 0
@@ -17976,12 +17944,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ec6f2c79f54e81499b2367f71f61761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 0}
-  firePos: []
-  muzzle: {fileID: 0}
+  bullet: {fileID: 8373586002616051454, guid: d5d9134ebff7b664ba16d76315cdb8f4, type: 3}
+  firePos:
+  - {fileID: 1506603410}
+  muzzle: {fileID: 7298646757072998143, guid: 070a10f4988f3bd4abe48bf1e3f7513b, type: 3}
   fireEffect: {fileID: 0}
   TimeBtwFire: 0.2
-  bulletForce: 0
+  bulletForce: 50
 --- !u!1 &1491237301
 GameObject:
   m_ObjectHideFlags: 0

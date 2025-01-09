@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LifeTimeDesTroy : MonoBehaviour
-{   public float Time; 
+{
+    public float Time;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +14,6 @@ public class LifeTimeDesTroy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

@@ -9,7 +9,7 @@ public class Weapon_1 : MonoBehaviour
     public Transform[] firePos;
     public GameObject muzzle;
     public GameObject fireEffect;
-    
+
     public float TimeBtwFire = 0.2f;
     public float bulletForce;
 
@@ -41,21 +41,28 @@ public class Weapon_1 : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 0);
     }
 
+
+
     void FireBullet()
     {
-
         foreach (Transform fire in firePos)
         {
             timeBtwFire = TimeBtwFire;
 
             GameObject bulletTmp = Instantiate(bullet, fire.position, Quaternion.identity);
 
-            // Effect
-            Instantiate(muzzle, fire.position, transform.rotation, transform);
-            Instantiate(fireEffect, fire.position, transform.rotation, transform);
-
             Rigidbody2D rb = bulletTmp.GetComponent<Rigidbody2D>();
-            rb.AddForce(transform.right * bulletForce, ForceMode2D.Impulse);
+            if (rb != null)
+            {
+                rb.AddForce(fire.right * bulletForce, ForceMode2D.Impulse);
+            }
+            
+            if (muzzle != null)
+                Instantiate(muzzle, fire.position, fire.rotation, transform);
+
+            if (fireEffect != null)
+                Instantiate(fireEffect, fire.position, fire.rotation, transform);
         }
     }
+
 }

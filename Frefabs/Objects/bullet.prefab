@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3029626805798273792}
   - component: {fileID: 7835050905145315820}
   m_Layer: 0
-  m_Name: Bullet Shootgun_strip2_1
+  m_Name: bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

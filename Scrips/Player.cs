@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     public float moveSpeed = 5f;
     public Animator animator;
     public SpriteRenderer characterSR;
+    public SpriteRenderer healthBarSR;
     public Transform zombieTarget; // Tham chiếu đến zombie để đối mặt
 
     private Vector3 moveInput;
@@ -48,7 +49,7 @@ public class Player : MonoBehaviour
 
         animator.SetFloat("Speed", moveInput.sqrMagnitude);
     }
-
+    
     private void FaceZombie(Transform zombieTransform)
     {
         Vector3 direction = zombieTransform.position - transform.position;

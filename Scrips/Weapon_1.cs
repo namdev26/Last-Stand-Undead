@@ -33,8 +33,9 @@ public class Weapon_1 : MonoBehaviour
     {
         RotateGun();
         timeBtwFire -= Time.deltaTime;
+        bool autoFire = true;
 
-        if (Input.GetMouseButton(0) && timeBtwFire < 0)
+        if (autoFire && timeBtwFire < 0)
         {
             FireBullet();
         }
@@ -54,20 +55,13 @@ public class Weapon_1 : MonoBehaviour
 
         Vector3 zombieScale = zombieTarget.localScale;
         // Điều chỉnh lật súng để phù hợp hướng
-        if (transform.eulerAngles.z >= 0 && transform.eulerAngles.z < 90)
+        if (transform.eulerAngles.z >= 90 && transform.eulerAngles.z < 270)
         {
-            transform.localScale = new Vector3(1 , 1 , 1);
+            transform.localScale = new Vector3(-2, -2 ,1);
             //transform.localScale = new Vector3(1 * playerScale.x, -1, 1);
         }
-        else if (transform.eulerAngles.z >= 90 && transform.eulerAngles.z < 180){
-            transform.localScale = new Vector3(-1 , 1 , 1);
-        }
-        else if (transform.eulerAngles.z >= 180 && transform.eulerAngles.z < 270){
-            transform.localScale = new Vector3(-1 , -1 , 1);
-        }
-        else {
-            transform.localScale = new Vector3(1 , -1 , 1);
-        }
+        else
+            transform.localScale = new Vector3(2, 2, 1);
     }
 
     void FireBullet()

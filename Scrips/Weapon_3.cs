@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Weapon_3 : MonoBehaviour
@@ -14,6 +13,21 @@ public class Weapon_3 : MonoBehaviour
     public float bulletForce;
 
     private float timeBtwFire;
+    private Transform zombieTarget; // Tham chiếu đến zombie
+
+    private void Start()
+    {
+        // Tìm đối tượng Zombie trong cảnh
+        ZombieAI zombie = FindObjectOfType<ZombieAI>();
+        if (zombie != null)
+        {
+            zombieTarget = zombie.transform;
+        }
+        else
+        {
+            Debug.LogWarning("ZombieAI not found in the scene!");
+        }
+    }
 
     void Update()
     {
@@ -28,20 +42,33 @@ public class Weapon_3 : MonoBehaviour
 
     void RotateGun()
     {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 lookDir = mousePos - transform.position;
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
+        if (zombieTarget == null) return;
 
+        // Tính hướng từ súng tới zombie
+        Vector3 directionToZombie = zombieTarget.position - transform.position;
+        float angle = Mathf.Atan2(directionToZombie.y, directionToZombie.x) * Mathf.Rad2Deg;
+
+        // Quay súng về phía zombie
         Quaternion rotation = Quaternion.Euler(0, 0, angle);
         transform.rotation = rotation;
 
-        if (transform.eulerAngles.z > 90 && transform.eulerAngles.z < 270)
-            transform.localScale = new Vector3(1, -1, 0);
-        else
-            transform.localScale = new Vector3(1, 1, 0);
+        Vector3 zombieScale = zombieTarget.localScale;
+        // Điều chỉnh lật súng để phù hợp hướng
+        if (transform.eulerAngles.z >= 0 && transform.eulerAngles.z < 90)
+        {
+            transform.localScale = new Vector3(1 , 1 , 1);
+            //transform.localScale = new Vector3(1 * playerScale.x, -1, 1);
+        }
+        else if (transform.eulerAngles.z >= 90 && transform.eulerAngles.z < 180){
+            transform.localScale = new Vector3(-1 , 1 , 1);
+        }
+        else if (transform.eulerAngles.z >= 180 && transform.eulerAngles.z < 270){
+            transform.localScale = new Vector3(-1 , -1 , 1);
+        }
+        else {
+            transform.localScale = new Vector3(1 , -1 , 1);
+        }
     }
-
-
 
     void FireBullet()
     {
@@ -51,7 +78,7 @@ public class Weapon_3 : MonoBehaviour
 
             GameObject bulletTmp = Instantiate(bullet, fire.position, Quaternion.identity);
 
-            Rigidbody2D rb = bulletTmp.GetComponent<Rigidbody2D>();
+            Rigidbody2D rb = bulletTmp.GetComponentInChildren<Rigidbody2D>();
             if (rb != null)
             {
                 rb.AddForce(fire.right * bulletForce, ForceMode2D.Impulse);
@@ -64,5 +91,4 @@ public class Weapon_3 : MonoBehaviour
                 Instantiate(fireEffect, fire.position, fire.rotation, transform);
         }
     }
-
 }

@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public Transform bulletSpawnPoint; // Điểm xuất phát của đạn
     public float bulletSpeed ; // Tốc độ của đạn
     private Vector3 moveInput;
+    public Health playerHealth;
     private void Start()
     {
         animator = GetComponentInChildren<Animator>();
@@ -77,5 +78,10 @@ public class Player : MonoBehaviour
         }
         // Tùy chọn: Hủy đạn sau một thời gian
         Destroy(bullet, 5f);
+    }
+
+    public void TakeDamage(int damage){
+        playerHealth.TakeDam(damage);
+        
     }
 }

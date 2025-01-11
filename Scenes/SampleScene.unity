@@ -17632,9 +17632,10 @@ GameObject:
   - component: {fileID: 958721401}
   - component: {fileID: 958721400}
   - component: {fileID: 958721404}
+  - component: {fileID: 958721405}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17777,6 +17778,20 @@ MonoBehaviour:
   nextWaypointDistance: 1
   zombieSR: {fileID: 519139080}
   target: {fileID: 0}
+--- !u!114 &958721405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958721397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5440846d8e488bf4386d123c402382f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDamage: 10
+  maxDamage: 20
 --- !u!1 &1272010920
 GameObject:
   m_ObjectHideFlags: 0
@@ -17789,7 +17804,7 @@ GameObject:
   - component: {fileID: 1272010923}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20118,7 +20133,7 @@ GameObject:
   - component: {fileID: 1922794715}
   m_Layer: 0
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20179,7 +20194,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 6
   m_Sprite: {fileID: 1463863822, guid: 631d50a544f36474481200dbbc998bad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -20208,6 +20223,9 @@ MonoBehaviour:
   characterSR: {fileID: 1922794711}
   healthBarSR: {fileID: 0}
   zombieTarget: {fileID: 519139082}
+  bulletPrefab: {fileID: 0}
+  bulletSpawnPoint: {fileID: 0}
+  bulletSpeed: 0
 --- !u!95 &1922794713
 Animator:
   serializedVersion: 5

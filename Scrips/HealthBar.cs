@@ -11,7 +11,7 @@ public class HealthBar : MonoBehaviour
     public TextMeshProUGUI valueText;
 
 
-    public void UpdateBar(int currentValue, int maxValue){
+    public void UpdateHealth(int currentValue, int maxValue){
         fillBar.fillAmount = (float)currentValue / (float)maxValue;
         valueText.text = currentValue.ToString() + "/" + maxValue.ToString();
     }

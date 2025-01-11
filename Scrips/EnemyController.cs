@@ -22,6 +22,7 @@ public class EnemyController : MonoBehaviour
 
     public void DamagePlayer() {
         int damage = UnityEngine.Random.Range(minDamage, maxDamage);
-        Debug.Log("DamagePlayer" + damage);
+        //Debug.Log("DamagePlayer" + damage);
+        playerS.TakeDamage(damage);
     }
 }

@@ -10,7 +10,6 @@ public class ZombieAI : MonoBehaviour
     public float nextWaypointDistance;
     public SpriteRenderer zombieSR;
     public Transform target;
-
     private Coroutine moveCoroutine;
     private Path path;
 
@@ -34,48 +33,34 @@ public class ZombieAI : MonoBehaviour
         if (!p.error)
         {
             path = p;
-
             if (moveCoroutine != null)
             {
                 StopCoroutine(moveCoroutine);
             }
-
             moveCoroutine = StartCoroutine(MoveToTargetCoroutine());
-        }
-        else
-        {
-            Debug.LogWarning("Pathfinding error: " + p.errorLog);
         }
     }
 
     IEnumerator MoveToTargetCoroutine()
-{
-    int currentWP = 0;
-
-    if (path == null || path.vectorPath == null || path.vectorPath.Count == 0)
     {
-        Debug.LogWarning("No path available for movement!");
-        yield break;
-    }
-
-    while (currentWP < path.vectorPath.Count)
-    {
-        Vector2 direction = ((Vector2)path.vectorPath[currentWP] - (Vector2)transform.position).normalized;
-        Vector3 force = direction * moveSpeed * Time.deltaTime;
-        transform.position += force;
-
-        float distance = Vector2.Distance(transform.position, path.vectorPath[currentWP]);
-        if (distance < nextWaypointDistance)
+        int currentWP = 0;
+        if (path == null || path.vectorPath == null || path.vectorPath.Count == 0) yield break;
+        while (currentWP < path.vectorPath.Count)
         {
-            currentWP++;
+            Vector2 direction = ((Vector2)path.vectorPath[currentWP] - (Vector2)transform.position).normalized;
+            Vector3 force = direction * moveSpeed * Time.deltaTime;
+            transform.position += force;
+            float distance = Vector2.Distance(transform.position, path.vectorPath[currentWP]);
+            if (distance < nextWaypointDistance)
+            {
+                currentWP++;
+            }
+            if (Mathf.Abs(direction.x) > 0.01f)
+            {
+                zombieSR.transform.localScale = new Vector3(Mathf.Sign(direction.x) * 2, 2, 1);
+            }
+            yield return null;
         }
-        if (Mathf.Abs(direction.x) > 0.01f)
-        {
-            zombieSR.transform.localScale = new Vector3(Mathf.Sign(direction.x) * 2, 2, 1);
-        }
-
-        yield return null;
     }
-}
 
 }

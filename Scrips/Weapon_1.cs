@@ -23,10 +23,6 @@ public class Weapon_1 : MonoBehaviour
         {
             zombieTarget = zombie.transform;
         }
-        else
-        {
-            Debug.LogWarning("ZombieAI not found in the scene!");
-        }
     }
 
     void Update()

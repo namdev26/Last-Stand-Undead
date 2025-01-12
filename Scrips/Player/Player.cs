@@ -11,42 +11,35 @@ public class Player : MonoBehaviour
     public Transform zombieTarget; // Tham chiếu đến zombie để đối mặt
     public GameObject bulletPrefab; // Prefab của đạn
     public Transform bulletSpawnPoint; // Điểm xuất phát của đạn
-    public float bulletSpeed ; // Tốc độ của đạn
+    public float bulletSpeed; // Tốc độ của đạn
     private Vector3 moveInput;
-    public Health playerHealth;
+    public PlayerHealth playerHealth;
+    public PlayerMovement playerMovement;
+
     private void Start()
     {
-        animator = GetComponentInChildren<Animator>();
+        //animator = GetComponentInChildren<Animator>();
         // Tìm đối tượng Zombie trong cảnh
         ZombieAI zombie = FindObjectOfType<ZombieAI>();
         if (zombie != null)
         {
             zombieTarget = zombie.transform;
         }
+        // if (playerMovement != null)
+        // {
+        //     playerMovement.animator = animator; // Gán Animator cho PlayerMovement
+        // }
     }
 
     private void Update()
     {
         // Xử lý di chuyển
-        HandleMovement();
+        playerMovement.HandleMoveMovement();
         // Luôn quay mặt về phía zombie
         if (zombieTarget != null)
         {
             FaceZombie(zombieTarget);
         }
-        // Xử lý bắn đạn
-        if (Input.GetKeyDown(KeyCode.Space)) // Nhấn phím Space để bắn
-        {
-            ShootBullet();
-        }
-    }
-
-    private void HandleMovement()
-    {
-        moveInput.x = Input.GetAxis("Horizontal");
-        moveInput.y = Input.GetAxis("Vertical");
-        transform.position += moveInput * moveSpeed * Time.deltaTime;
-        animator.SetFloat("Speed", moveInput.sqrMagnitude);
     }
 
     private void FaceZombie(Transform zombieTransform)
@@ -80,8 +73,8 @@ public class Player : MonoBehaviour
         Destroy(bullet, 5f);
     }
 
-    public void TakeDamage(int damage){
+    public void TakeDamage(int damage)
+    {
         playerHealth.TakeDam(damage);
-        
     }
 }

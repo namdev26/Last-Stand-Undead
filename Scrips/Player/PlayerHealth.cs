@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 
-public class Health : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] int maxHealth;
@@ -36,17 +36,16 @@ public class Health : MonoBehaviour
                 currentHealth = 0;
                 OnDeath.Invoke();
             }
-            _safeTimeCooldown =  safeTime;
+            _safeTimeCooldown = safeTime;
             healthBar.UpdateHealth(currentHealth, maxHealth);
         }
     }
-    // Update is called once per frame
     public void Death()
     {
         Destroy(gameObject);
     }
     private void Update()
-    {   
+    {
         _safeTimeCooldown -= Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.Space))
         {

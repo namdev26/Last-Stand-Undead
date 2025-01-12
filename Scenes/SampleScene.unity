@@ -20226,6 +20226,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 0}
   bulletSpawnPoint: {fileID: 0}
   bulletSpeed: 0
+  playerHealth: {fileID: 1922794715}
 --- !u!95 &1922794713
 Animator:
   serializedVersion: 5
@@ -20295,7 +20296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 140
-  safeTime: 0
+  safeTime: 1
   healthBar: {fileID: 1544438177}
   OnDeath:
     m_PersistentCalls:

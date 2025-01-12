@@ -7,11 +7,11 @@ public class Bullet : MonoBehaviour
     public int minDamage ;
     public int maxDamage ;
     public bool myBullet;
-    Health enemyHealth ;
+    PlayerHealth enemyHealth ;
 
     private void Start()
     {
-        enemyHealth = GetComponent<Health>();
+        enemyHealth = GetComponent<PlayerHealth>();
     }
     public void TakeDamage(int damage){
         enemyHealth.TakeDam(damage);

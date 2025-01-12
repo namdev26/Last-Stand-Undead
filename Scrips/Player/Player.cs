@@ -2,33 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour //,IDamageable
 {
     public float moveSpeed;
-    public Animator animator;
+    //public Animator animator;
     public SpriteRenderer characterSR;
     public SpriteRenderer healthBarSR;
-    public Transform zombieTarget; // Tham chiếu đến zombie để đối mặt
-    public GameObject bulletPrefab; // Prefab của đạn
-    public Transform bulletSpawnPoint; // Điểm xuất phát của đạn
-    public float bulletSpeed; // Tốc độ của đạn
-    private Vector3 moveInput;
+    public Transform zombieTarget;
+    public GameObject bulletPrefab;
+    public Transform bulletSpawnPoint;
+    public float bulletSpeed;
+    public Animator animator;
     public PlayerHealth playerHealth;
     public PlayerMovement playerMovement;
 
     private void Start()
     {
-        //animator = GetComponentInChildren<Animator>();
         // Tìm đối tượng Zombie trong cảnh
         ZombieAI zombie = FindObjectOfType<ZombieAI>();
         if (zombie != null)
         {
             zombieTarget = zombie.transform;
         }
-        // if (playerMovement != null)
-        // {
-        //     playerMovement.animator = animator; // Gán Animator cho PlayerMovement
-        // }
     }
 
     private void Update()
@@ -41,7 +36,25 @@ public class Player : MonoBehaviour
             FaceZombie(zombieTarget);
         }
     }
+    public void TakeDamage(int damage)
+    {
+        playerHealth.TakeDam(damage);  // Gọi phương thức TakeDam của PlayerHealth để giảm máu
 
+        // Gọi animation Hurt khi bị đánh
+        if (animator != null)
+        {
+            animator.SetTrigger("Hurt");
+        }
+
+        // Nếu máu <= 0, nhân vật chết
+        if (playerHealth.currentHealth <= 0)
+        {
+            if (animator != null)
+            {
+                animator.SetTrigger("Die");  // Gọi animation Die khi chết
+            }
+        }
+    }
     private void FaceZombie(Transform zombieTransform)
     {
         Vector3 direction = zombieTransform.position - transform.position;
@@ -73,8 +86,9 @@ public class Player : MonoBehaviour
         Destroy(bullet, 5f);
     }
 
-    public void TakeDamage(int damage)
-    {
-        playerHealth.TakeDam(damage);
-    }
+    // Triển khai phương thức từ IDamageable
+    // public void TakeDamage(int damage)
+    // {
+    //     playerHealth.TakeDam(damage);  // Gọi phương thức TakeDam của PlayerHealth để giảm máu
+    // }
 }
